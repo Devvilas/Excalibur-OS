@@ -103,5 +103,6 @@ system("clear")
 
 print("Now, your system is installed but is not with the Excalibur scripts and other things...")
 
-os.startfile("move.sh")
-
+system("chmod +x move.sh")
+system("./move.sh")
+system("arch-chroot /mnt")

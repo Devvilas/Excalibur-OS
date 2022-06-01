@@ -10,8 +10,7 @@ BOOT_MODE = BOOT_file.read()
 BOOT_file.close()
 disk_file = open("files/disk", "r")
 disk_to_parted = disk_file.read()
-disk_to_parted.close()
-system("arch-chroot /mnt")
+disk_file.close()
 
 system("cd")
 
@@ -83,7 +82,7 @@ system("pacman -S firefox neofetch")
 system("echo neofetch >> /etc/bash.bashrc")
 
 name = input("Name> ")
-system("useradd -m -g users -G wheel sudo " + name)
+system("useradd -m -g users -G wheel " + name)
 
 system("passwd " + name)
 
