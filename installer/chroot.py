@@ -1,10 +1,16 @@
 from os import system
 import os as os
 from time import sleep
-from installer import BOOT_MODE
-from installer import layout
-from installer import disk_to_parted
 
+layout_file = open("files/layout", "r")
+layout = layout_file.read()
+layout_file.close()
+BOOT_file = open("files/boot", "r")
+BOOT_MODE = BOOT_file.read()
+BOOT_file.close()
+disk_file = open("files/disk", "r")
+disk_to_parted = disk_file.read()
+disk_to_parted.close()
 system("arch-chroot /mnt")
 
 system("cd")
@@ -86,3 +92,4 @@ system("echo blacklist pcspkr > /etc/modprobe.d/nobeep.conf")
 print("Installer not done\nVERSION: DEVELOPING... \nSYSTEM CODE NAME: EXCAL")
 
 system("exit && umount -R /mnt && reboot")
+

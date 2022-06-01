@@ -19,6 +19,10 @@ input("Press enter to display layouts")
 system("ls /usr/share/kbd/keymaps/**/*.map.gz | less")
 
 layout = input("Choose your layout: ")
+system("mkdir files")
+layout_file = open("files/layout", "w")
+layout_file.write(layout)
+layout_file.close()
 
 system("loadkeys " + layout)
 
@@ -27,6 +31,9 @@ if os.path.exists("/sys/firmware/efi/efivars"):
 if not os.path.exists("/sys/firmware/efi/efivars"):
     BOOT_MODE = "bios"
 
+BOOT_file = open("files/boot", "w")
+BOOT_file.write(BOOT_MODE)
+BOOT_file.close()
 
 system("clear")
 
@@ -46,7 +53,9 @@ system("fdisk -l")
 print("Write the last letter of the disk you choosed, ex: /dev/sda ---> a")
 
 disk_to_parted = input("choose_disk> ")
-
+disk_file = open("files/disk", "w")
+disk_file.write(disk_to_parted)
+disk_file.close()
 system("fdisk /dev/sd" + disk_to_parted)
 
 system("clear")
@@ -94,4 +103,5 @@ system("clear")
 
 print("Now, your system is installed but is not with the Excalibur scripts and other things...")
 
-print("Execute python3 chroot.py")
+os.startfile("move.sh")
+
